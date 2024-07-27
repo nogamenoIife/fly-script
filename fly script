@@ -1,0 +1,43 @@
+GameName = "nogamenolife’s script"
+tab1name = "Main"
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+
+local GameName = Library:NewWindow(GameName)
+local Tab1 = GameName:NewSection(tab1name)
+
+local Tab2 = GameName:NewSection("nogamenolife")
+
+-- Variables
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local userInputService = game:GetService("UserInputService")
+
+-- Infinite Jump
+local infiniteJumpEnabled = false
+
+local function onJumpRequest()
+    if infiniteJumpEnabled then
+        humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+    end
+end
+
+Tab1:CreateToggle("Infinite Jump", function(value)
+    infiniteJumpEnabled = value
+end)
+
+userInputService.JumpRequest:Connect(onJumpRequest)
+
+-- Speed Control
+local speed = 16 -- Default speed
+
+Tab1:CreateTextbox("Speed", function(value)
+    speed = tonumber(value)
+    if speed then
+        humanoid.WalkSpeed = speed
+    else
+        humanoid.WalkSpeed = 16 -- Reset to default if invalid input
+    end
+end)
