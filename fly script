@@ -1,43 +1,123 @@
-GameName = "nogamenolife’s script"
-tab1name = "Main"
-
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
-
-local GameName = Library:NewWindow(GameName)
-local Tab1 = GameName:NewSection(tab1name)
-
-local Tab2 = GameName:NewSection("nogamenolife")
-
--- Variables
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local userInputService = game:GetService("UserInputService")
-
--- Infinite Jump
-local infiniteJumpEnabled = false
-
-local function onJumpRequest()
-    if infiniteJumpEnabled then
-        humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-    end
-end
-
-Tab1:CreateToggle("Infinite Jump", function(value)
-    infiniteJumpEnabled = value
-end)
-
-userInputService.JumpRequest:Connect(onJumpRequest)
-
--- Speed Control
-local speed = 16 -- Default speed
-
-Tab1:CreateTextbox("Speed", function(value)
-    speed = tonumber(value)
-    if speed then
-        humanoid.WalkSpeed = speed
-    else
-        humanoid.WalkSpeed = 16 -- Reset to default if invalid input
-    end
-end)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coco Repository</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background: url('https://images7.alphacoders.com/658/658741.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            margin: 100px auto;
+            padding: 20px;
+            max-width: 800px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        h1 {
+            margin-top: 0;
+        }
+        .script-box {
+            background-color: rgba(255, 182, 193, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .script-box h2 {
+            color: #ff69b4;
+        }
+        .script-box pre {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 10px;
+            color: #000;
+            font-family: monospace;
+            display: inline-block;
+        }
+        .script-buttons {
+            margin-top: 10px;
+        }
+        .script-buttons button {
+            background-color: #ff69b4;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#">Todos</a>
+        <a href="#">Universales</a>
+        <a href="#">Juegos</a>
+        <a href="#">Discord</a>
+        <a href="#">YouTube</a>
+        <a href="#">Antiguos-Recientes</a>
+    </div>
+    <div class="container">
+        <h1>Welcome to Coco Repository</h1>
+        <p>This is a simple website hosted on GitHub Pages.</p>
+        <img src="images/sample-image.jpg" alt="Sample Image">
+        <div class="script-box">
+            <h2>UPDATE Speed + InfJump</h2>
+            <pre>loadstring(game:HttpGet("https://raw.githubusercontent.com/nogamenoIife/fly-script/main/fly%20script"))()</pre>
+            <div class="script-buttons">
+                <button onclick="copyToClipboard()">COPY</button>
+                <button>SHARE</button>
+                <button>REPORT</button>
+                <button>Go to Game</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function copyToClipboard() {
+            const str = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nogamenoIife/fly-script/main/fly%20script"))()';
+            navigator.clipboard.writeText(str).then(function() {
+                alert('Copied to clipboard!');
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
